@@ -1,18 +1,16 @@
-
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 function WelcomeComponent() {
+	const { username } = useParams();
 
-	const {username} = useParams();
-
-	return (<>
-		<div className="Welcome">
-			Welcome Component hi {username}
-		</div>
+	return (
 		<div>
-			<Link to="/todo">Manage Todos</Link>
+			<div className="Welcome">Welcome Component hi {username}</div>
+			<div>
+				<Link to="/todos">Manage Todos</Link>
+			</div>
 		</div>
-		</>);
+	);
 }
 
 export default WelcomeComponent;
