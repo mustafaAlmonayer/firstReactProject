@@ -41,8 +41,7 @@ function TodoApp() {
 							path="/welcome/:username"
 							element={
 								<AuthenticatedRoute>
-									{' '}
-									<WelcomeComponent />{' '}
+									<WelcomeComponent />
 								</AuthenticatedRoute>
 							}
 						/>
@@ -50,8 +49,7 @@ function TodoApp() {
 							path="/todos"
 							element={
 								<AuthenticatedRoute>
-									{' '}
-									<TodoComponent />{' '}
+									<TodoComponent />s
 								</AuthenticatedRoute>
 							}
 						/>

@@ -1,22 +1,29 @@
+import { useEffect, useState } from 'react';
+import {getTodosForUser} from './api/TodoService';
+
 function TodoComponent() {
 
 	const nowDate = new Date();
 
+	const [todos, setTodos] = useState([]);
 
-	const futreDate = new Date(nowDate.getFullYear()+15, nowDate.getMonth(), nowDate.getDate())
+	useEffect(() => refreshTodos(), []);
 
-	const todos =[ 
-		{id: 1, descreption: "aws", completed: false, targetDate: futreDate},
-		{id: 2, descreption: "full stack", completed: false, targetDate: futreDate}
-		]
+	function refreshTodos() {
+		getTodosForUser("mustafa")	
+			.then((responce) => setTodos(responce.data))
+			.catch((error) => console.log(error))
+			.finally(console.log("clean up"))
+	}
 
+	
 	return (
 		<div className='Todo container'>
 			<table className="table">
 				<thead>
 					<tr>
 						<td>id</td>
-						<td>desception</td>
+						<td>description</td>
 						<td>completed</td>
 						<td>target date</td>
 					</tr>
@@ -26,9 +33,9 @@ function TodoComponent() {
 					{todos.map(todo => (
 					<tr key={todo.id}>
 						<td>{todo.id}</td>
-						<td>{todo.descreption}</td>
-						<td>{todo.completed.toString()}</td>
-						<td>{todo.targetDate.toDateString()}</td>
+						<td>{todo.description}</td>
+						<td>{todo.done.toString()}</td>
+						<td>{todo.targetDate}</td>
 					</tr>
 
 					))}
