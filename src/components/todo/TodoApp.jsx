@@ -2,13 +2,14 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import LogoutComponent from './LogoutComponent';
 import LoginComponent from './LoginComponent';
 import WelcomeComponent from './WelcomeComponent';
-import TodoComponent from './TodoComponent';
+import TodosComponent from './TodosComponent';
 import ErrorComponent from './ErrorComponent';
 import HeaderComponent from './HeaderComponent';
 import FooterComponent from './FooterComponent';
 import AuthProvider from './security/AuthContext';
 import './TodoApp.css';
 import { useAuth } from './security/AuthContext';
+import TodoComponent from './TodoComponent';
 
 function AuthenticatedRoute({ children }) {
 	if (useAuth().isAuthenticated) {
@@ -49,7 +50,15 @@ function TodoApp() {
 							path="/todos"
 							element={
 								<AuthenticatedRoute>
-									<TodoComponent />s
+									<TodosComponent />
+								</AuthenticatedRoute>
+							}
+						/>
+						<Route
+							path="/todo/:id"
+							element={
+								<AuthenticatedRoute>
+									<TodoComponent />
 								</AuthenticatedRoute>
 							}
 						/>
