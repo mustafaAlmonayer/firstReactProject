@@ -21,7 +21,7 @@ function TodoComponent() {
     let todo;
 
     function retriveTodo() {
-        if (id != -1) {
+        if (id !== -1) {
             getTodo(username, id)
                 .then((responce) => {
                     setDescription(responce.data.description)
@@ -39,7 +39,7 @@ function TodoComponent() {
             done: false
         }
 
-        if(id != -1){
+        if(id !== -1){
 
         updateTodo(username, id, todo)
             .then(responce => {
@@ -49,7 +49,6 @@ function TodoComponent() {
         } else {
             createTodo(username, todo)
         }
-
         navigate("/todos")
     }
 

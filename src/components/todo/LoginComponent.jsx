@@ -3,14 +3,17 @@ import { useState } from 'react';
 import { useAuth } from './security/AuthContext';
 
 function LoginComponent() {
-	const [ username, setUsername ] = useState('in28Minutes');
-	const [ password, setPassword ] = useState('test1234');
-	const [ authFailed, setAuthFailed ] = useState(false);
+	const [username, setUsername] = useState('in28Minutes');
+	const [password, setPassword] = useState('test1234');
+	const [authFailed, setAuthFailed] = useState(false);
 	const auth = useAuth();
 	const navigate = useNavigate();
 
-	function handleSubmit() {
-		if (auth.login(username, password)) {
+	async function handleSubmit() {
+
+		console.log(1)
+
+		if (await auth.login(username, password)) {
 			navigate(`/welcome/${username}`);
 		} else {
 			setAuthFailed(true);

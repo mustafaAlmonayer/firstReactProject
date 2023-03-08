@@ -2,13 +2,16 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import {  retriveHelloWorldBeanPathVariable } from './api/HelloWorldService';
+import { useAuth } from './security/AuthContext';
 function WelcomeComponent() {
 	const { username } = useParams();
 
 	const [message, setMessage] = useState("");
 
+	const auth = useAuth();
+
 	function getWelcomeUser() {
-		retriveHelloWorldBeanPathVariable(username)
+		retriveHelloWorldBeanPathVariable(username, auth.baToken)
 			.then( responce => setMessage(responce.data.message))
 			.catch( error => setMessage(error.data.message))
 			.finally(console.log("clean up"));
